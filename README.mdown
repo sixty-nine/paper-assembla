@@ -1,0 +1,12 @@
+Paper Assembla
+==============
+
+Install
+-------
+Create a bookmark and set "javascript:" + this code as target or use the minified version.
+
+About
+-----
+Paper Assembla is a bookmarklet that can be used to print out user stories from within Assembla (https://www.assembla.com).
+
+Inspired by Paper-Jira (https://github.com/caillou/paper-jira).
