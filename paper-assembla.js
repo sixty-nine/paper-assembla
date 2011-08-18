@@ -33,7 +33,7 @@
     /* Default CSS style */
     style = 
         "div { padding-bottom: 10px; } " +
-        "div.ticket { font-size: 16px; width: 450px; } " +
+        "div.ticket { font-size: 16px; width: 100%; } " +
         "div.ticket label { display: inline; font-weight: normal; } " +
         "div.ticket span { font-weight: bold; } " +
         "div.ticket-nr { font-size: 25px; margin-right: 25px; float: left; } " +
@@ -41,8 +41,9 @@
         "div.ticket-description h3 { font-size: 16px; padding-bottom: 10px; } " +
         "div.ticket-description { padding-top: 25px; } " +
         "div.ticket-description h3 { font-size: 16px; } " +
-        "div.ticket-related { width: 49%; float: left; border: 1px dashed #666666; background-color: #D0D0D0; height: 200px; } " +
-        "div.ticket-related-nr { float: left; margin-right: 5px; } " +
+        "div.ticket-related { width: 32%; float: left; border: 1px dashed #666666; background-color: #D0D0D0; height: 200px; } " +
+        "div.ticket-related label { font-weight: bold; color: black; } " +
+        "div.ticket-related-nr { padding-bottom: 0 } " +
         "div.ticket-related-title { font-weight: bold; } " +
         "div.ticket-related-master { }";
 
@@ -76,10 +77,10 @@
         related.each(function (e) {
             div.append('<div class="ticket-related"/>')
                 .find('div.ticket-related:last')
-                .append('<div class="ticket-related-nr">' + e[0] + '</div>')
+                .append('<div class="ticket-related-nr"><label>Ticket number</label> ' + e[0] + '</div>')
+                .append('<div class="ticket-related-assoc"><label>' + e[2] + '</label> ' + number + '</div>')
                 .append('<div class="ticket-related-title">' + e[1] + '</div>')
-                .append('<div class="ticket-related-description">'+e[2]+'</div>')
-                .append('<div class="ticket-related-master">Subtask of ' + number + '</div>');
+                .append('<div class="ticket-related-description">'+e[3]+'</div>');
         });
     };
 
@@ -169,7 +170,8 @@
         counter = counter + 1;
         related.push([
             $(this).find('td.number').text(),
-            $(this).find('td.summary a').html()
+            $(this).find('td.summary a').html(),
+            $(this).find('td.number + td span').html()
         ]);
     });
 
