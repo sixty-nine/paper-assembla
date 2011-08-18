@@ -34,13 +34,16 @@
     style = 
         "div { padding-bottom: 10px; } " +
         "div.ticket { font-size: 16px; width: 100%; } " +
+        "div.ticket * { page-break-after: avoid; page-break-before: avoid; } " +
         "div.ticket label { display: inline; font-weight: normal; } " +
         "div.ticket span { font-weight: bold; } " +
         "div.ticket-nr { font-size: 25px; margin-right: 25px; float: left; } " +
         "div.ticket-title { font-size: 25px; font-weight: bold; padding-bottom: 25px; } " +
         "div.ticket-description h3 { font-size: 16px; padding-bottom: 10px; } " +
         "div.ticket-description { padding-top: 25px; } " +
-        "div.ticket-description h3 { font-size: 16px; } " +
+        "div.ticket-description h3 { font-size: 16px; margin-bottom: 10px; } " +
+        "div.ticket-description h3 + br { height: 1px; margin: 0; padding: 0; } " +
+        "div.tickets-related { page-break-before: always; } " +
         "div.ticket-related { width: 32%; float: left; border: 1px dashed #666666; background-color: #D0D0D0; height: 200px; } " +
         "div.ticket-related label { font-weight: bold; color: black; } " +
         "div.ticket-related-nr { padding-bottom: 0 } " +
@@ -58,7 +61,7 @@
 
         /* Display the main ticket information */
         jQuery('body')
-            .html('<div class="ticket" style="page-break-after:always"/>')
+            .html('<div class="ticket" style="page-break-after:always; page-break-inside: avoid;"/>')
             .prepend('<style>' + style + '</style>')
             .find('div.ticket')
             .append('<div class="ticket-nr">' + number + '</div>')
@@ -155,7 +158,13 @@
     story_points = data.find('.total_estimate').text().replace('Estimated points: ', '');
     component = data.find('.component_id').text().replace('Component: ', '');
     priority = data.find('.priority').text().replace('Priority: ', '');
-    comment = data.find('.description').html();
+    comment = data.find('.description')
+        .html()
+        /* Try to reduce the size of the description */
+        .replace('</h3><br>', '</h3>')
+        .replace('</h3><br/>', '</h3>')
+        .replace('<br/><br/>', '<br/>')
+        .replace('<br><br>', '<br/>');
 
     if (number === null || title === null) {
         alert('An error has occured');
