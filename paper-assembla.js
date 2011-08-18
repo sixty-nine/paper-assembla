@@ -23,9 +23,8 @@
         counter, assemblaUrl, style, maxDescriptionLength;
 
     /* Base URL to access Assembla tickets */
-    /* YOU WILL NEED TO ADAPT THIS TO POINT TO YOUR OWN ASSEMBLA WORKSPACE */
-    /* TODO: is there a way to get this URL automaticaly? */
-    assemblaUrl = 'https://www.assembla.com/spaces/nzz_eos/tickets/';
+    assemblaUrl = window.location.toString();
+    assemblaUrl = assemblaUrl.substr(0, assemblaUrl.lastIndexOf('/') + 1);
 
     /* The max length for the description of the sub-tickets */
     maxDescriptionLength = 75;
