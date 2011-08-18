@@ -29,6 +29,13 @@ The other solution is to create another bookmarklet with the following code:
 
 Then you can call this second bookmarklet after using paper-assembla.
 
+Minify your own version
+-----------------------
+
+If you modify the scripts you may want to generate a minified version of the code.
+
+To do that we used http://jscompress.com/
+
 About
 -----
 Paper Assembla is a bookmarklet that can be used to print out user stories from within Assembla (https://www.assembla.com).
