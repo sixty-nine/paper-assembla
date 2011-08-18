@@ -14,6 +14,8 @@
  *
  * Author: D. Barsotti <daniel.barsotti@liip.ch>
  *
+ * (c) Liip AG 2011
+ *
  */
 
 (function ($) {
