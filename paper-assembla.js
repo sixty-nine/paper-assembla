@@ -113,6 +113,8 @@
             .replace(/^\s+/g, '')
             .replace(/\s+$/g, '');
 
+        jQuery('tmpdiv_' + counter).remove();
+
         subdescr = shortenDescription(subdescr);
 
         related[counter].push(subdescr);
@@ -153,6 +155,12 @@
     component = data.find('.component_id').text().replace('Component: ', '');
     priority = data.find('.priority').text().replace('Priority: ', '');
     comment = data.find('.description').html();
+
+    if (number === null || title === null) {
+        alert('An error has occured');
+        $('div.overlay').remove();
+        return;
+    }
 
     /* Extract the available information for the sub-tickets */
     related = [];
