@@ -10,7 +10,7 @@ You will need to adapt the *assemblaUrl* variable in the script to point to your
 Overriding the stylesheet
 -------------------------
 
-You have two solutions. You can either modify the paper-assembla.js code and modify the style variable to include your own formatting.
+You have two solutions. You can either modify the paper-assembla.js code and modify the *style* variable to include your own formatting.
 
 The other solution is to create another bookmarklet with the following code:
 

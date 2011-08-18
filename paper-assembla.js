@@ -24,6 +24,7 @@
 
     /* Base URL to access Assembla tickets */
     /* YOU WILL NEED TO ADAPT THIS TO POINT TO YOUR OWN ASSEMBLA WORKSPACE */
+    /* TODO: is there a way to get this URL automaticaly? */
     assemblaUrl = 'https://www.assembla.com/spaces/nzz_eos/tickets/';
 
     /* Default CSS style */
