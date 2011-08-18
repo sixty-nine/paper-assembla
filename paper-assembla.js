@@ -20,12 +20,15 @@
 
     var data, number, title, milestone, story_points, component, priority, 
         comment, related, rows, spinner, showPrintPreview, ajaxCallback,
-        counter, assemblaUrl, style;
+        counter, assemblaUrl, style, maxDescriptionLength;
 
     /* Base URL to access Assembla tickets */
     /* YOU WILL NEED TO ADAPT THIS TO POINT TO YOUR OWN ASSEMBLA WORKSPACE */
     /* TODO: is there a way to get this URL automaticaly? */
     assemblaUrl = 'https://www.assembla.com/spaces/nzz_eos/tickets/';
+
+    /* The max length for the description of the sub-tickets */
+    maxDescriptionLength = 75;
 
     /* Default CSS style */
     style = 
@@ -38,7 +41,7 @@
         "div.ticket-description h3 { font-size: 16px; padding-bottom: 10px; } " +
         "div.ticket-description { padding-top: 25px; } " +
         "div.ticket-description h3 { font-size: 16px; } " +
-        "div.ticket-related { width: 49%; float: left; border: 1px dashed #666666; background-color: #D0D0D0; height: 150px; } " +
+        "div.ticket-related { width: 49%; float: left; border: 1px dashed #666666; background-color: #D0D0D0; height: 200px; } " +
         "div.ticket-related-nr { float: left; margin-right: 5px; } " +
         "div.ticket-related-title { font-weight: bold; } " +
         "div.ticket-related-master { }";
@@ -75,10 +78,22 @@
                 .find('div.ticket-related:last')
                 .append('<div class="ticket-related-nr">' + e[0] + '</div>')
                 .append('<div class="ticket-related-title">' + e[1] + '</div>')
-                /* TODO: displaying the full description of the sub-tickets will break the layout */
-                /*.append('<div class="ticket-related-description">'+e[2]+'</div>')*/
+                .append('<div class="ticket-related-description">'+e[2]+'</div>')
                 .append('<div class="ticket-related-master">Subtask of ' + number + '</div>');
         });
+    };
+
+    /* Used to shorten the full description of the subtask so that it can be
+     * nicely printed */
+    shortenDescription = function (descr) {
+
+        descr = descr.replace(/\w+/, ' ');
+
+        if (descr.length >= maxDescriptionLength) {
+            descr = descr.substr(0, maxDescriptionLength) + '...';
+        }
+
+        return descr;
     };
 
     /* AJAX callback used when getting sub-tickets information, will extract the
@@ -94,9 +109,11 @@
             .find('#tmpdiv_' + counter)
             .html(response)
             .find('.description')
-            .html()
+            .text()
             .replace(/^\s+/g, '')
             .replace(/\s+$/g, '');
+
+        subdescr = shortenDescription(subdescr);
 
         related[counter].push(subdescr);
 
