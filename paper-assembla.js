@@ -1,5 +1,5 @@
-/*jslint sloppy: true, maxerr: 50, indent: 4 */
-/*global jQuery, $ */
+/*jslint devel: true, sloppy: true, maxerr: 50, indent: 4 */
+/*global jQuery, $, window */
 
 /*
  * Paper-assembla.js
@@ -20,7 +20,7 @@
 
     var data, number, title, milestone, story_points, component, priority, 
         comment, related, rows, spinner, showPrintPreview, ajaxCallback,
-        counter, assemblaUrl, style, maxDescriptionLength;
+        counter, assemblaUrl, style, maxDescriptionLength, shortenDescription;
 
     /* Base URL to access Assembla tickets */
     assemblaUrl = window.location.toString();
@@ -82,7 +82,7 @@
                 .append('<div class="ticket-related-nr"><label>Ticket number</label> ' + e[0] + '</div>')
                 .append('<div class="ticket-related-assoc"><label>' + e[2] + '</label> ' + number + '</div>')
                 .append('<div class="ticket-related-title">' + e[1] + '</div>')
-                .append('<div class="ticket-related-description">'+e[3]+'</div>');
+                .append('<div class="ticket-related-description">' + e[3] + '</div>');
         });
     };
 
