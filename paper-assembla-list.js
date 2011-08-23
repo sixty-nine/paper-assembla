@@ -128,7 +128,7 @@
             .replace(/^\s+/g, '')
             .replace(/\s+$/g, '');
 
-        jQuery('tmpdiv_' + counter).remove();
+        jQuery('#tmpdiv_' + counter).remove();
 
         subdescr = shortenDescription(subdescr);
 
