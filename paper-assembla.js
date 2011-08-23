@@ -24,7 +24,8 @@
 
     var data, number, title, milestone, story_points, component, priority, 
         comment, related, rows, spinner, showPrintPreview, ajaxCallback,
-        counter, assemblaUrl, style, maxDescriptionLength, shortenDescription;
+        counter, assemblaUrl, style, maxDescriptionLength, shortenDescription,
+        popup;
 
     /* Base URL to access Assembla tickets */
     assemblaUrl = window.location.toString();
@@ -63,7 +64,7 @@
         var div;
 
         /* Display the main ticket information */
-        jQuery('body')
+        $(popup.document.body)
             .html('<div class="ticket" style="page-break-after:always; page-break-inside: avoid;"/>')
             .prepend('<style>' + style + '</style>')
             .find('div.ticket')
@@ -76,7 +77,8 @@
             .append('<div class="ticket-description">' + comment + '</div>');
 
         /* Display the sub-tickets information */
-        div = $('div.ticket')
+        div = $(popup.document.body)
+            .find('div.ticket')
             .append('<div class="tickets-related"/>')
             .find('div.tickets-related');
 
@@ -88,6 +90,9 @@
                 .append('<div class="ticket-related-title">' + e[1] + '</div>')
                 .append('<div class="ticket-related-description">' + e[3] + '</div>');
         });
+
+        /* Hide the spinner overlay */
+        $('div.overlay').remove();
     };
 
     /* Used to shorten the full description of the subtask so that it can be
@@ -195,4 +200,7 @@
         });
     });
    
+    /* The popup window cannot be opened in an AJAX callback */
+    popup = window.open();
+
 }(jQuery));

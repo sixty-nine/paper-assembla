@@ -26,7 +26,8 @@
 
     var data, number, title, milestone, story_points, component, priority,
         comment, related, rows, spinner, showPrintPreview, ajaxCallback,
-        counter, assemblaUrl, style, maxDescriptionLength, shortenDescription;
+        counter, assemblaUrl, style, maxDescriptionLength, shortenDescription,
+        popup;
 
     /* Base URL to access Assembla tickets */
     assemblaUrl = window.location.toString();
@@ -65,7 +66,7 @@
         var table;
 
         /* Display the main ticket information */
-        jQuery('body')
+        $(popup.document.body)
             .html('<div class="ticket" style="page-break-after:always; page-break-inside: avoid;"/>')
             .prepend('<style>' + style + '</style>')
             .find('div.ticket')
@@ -78,7 +79,8 @@
             .append('<div class="ticket-description">' + comment + '</div>');
 
         /* Display the sub-tickets information */
-        table = $('div.ticket')
+        table = $(popup.document.body)
+            .find('div.ticket')
             .append('<div class="tickets-related"/>')
             .find('div.tickets-related')
             .append('<table><tr><th>Ticket No.</th><th>Relation</th><th>Summary</th></tr></table>')
@@ -91,6 +93,9 @@
                 .append('<td>' + e[2] + '</td>')
                 .append('<td>' + e[1] + '</td>');
         });
+
+        /* Hide the spinner overlay */
+        $('div.overlay').remove();
     };
 
     /* Used to shorten the full description of the subtask so that it can be
@@ -197,5 +202,8 @@
             success: ajaxCallback
         });
     });
+
+    /* The popup window cannot be opened in an AJAX callback */
+    popup = window.open();
 
 }(jQuery));
