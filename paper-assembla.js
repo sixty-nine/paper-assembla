@@ -31,6 +31,12 @@
     assemblaUrl = window.location.toString();
     assemblaUrl = assemblaUrl.substr(0, assemblaUrl.lastIndexOf('/') + 1);
 
+    /* Check we are on the assembla.com web site */
+    if (assemblaUrl.indexOf('www.assembla.com') === -1) {
+        alert('This bookmarklet only works on the www.assembla.com website !');
+        return;
+    }
+
     /* The max length for the description of the sub-tickets */
     maxDescriptionLength = 75;
 
