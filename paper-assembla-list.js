@@ -84,21 +84,25 @@
             .append('<div class="ticket-priority"><label>Priority:</label> <span>' + priority + '</span></div>')
             .append('<div class="ticket-description">' + comment + '</div>');
 
-        /* Display the sub-tickets information */
-        table = $(popup.document.body)
-            .find('div.ticket')
-            .append('<div class="tickets-related"/>')
-            .find('div.tickets-related')
-            .append('<table><tr><th>Ticket No.</th><th>Relation</th><th>Summary</th></tr></table>')
-            .find('table');
+        if (related.length !== 0) {
 
-        related.each(function (e) {
-            table.append('<tr>')
-                .find('tr:last')
-                .append('<td>' + e[0] + '</td>')
-                .append('<td>' + e[2] + '</td>')
-                .append('<td>' + e[1] + '</td>');
-        });
+            /* Display the sub-tickets information */
+            table = $(popup.document.body)
+                .find('div.ticket')
+                .append('<div class="tickets-related"/>')
+                .find('div.tickets-related')
+                .append('<table><tr><th>Ticket No.</th><th>Relation</th><th>Summary</th></tr></table>')
+                .find('table');
+
+            related.each(function (e) {
+                table.append('<tr>')
+                    .find('tr:last')
+                    .append('<td>' + e[0] + '</td>')
+                    .append('<td>' + e[2] + '</td>')
+                    .append('<td>' + e[1] + '</td>');
+            });
+        }
+
 
         /* Hide the spinner overlay */
         $('div.overlay').remove();
@@ -222,5 +226,10 @@
         $(popup.document.head).append('<link rel="stylesheet" type="'
             + type + '" media="' + media + '" href="' + href + '" />');
     });
+
+    /* Show the result even if there were no subtasks */
+    if (related.length === 0) {
+        showPrintPreview();
+    }
 
 }(jQuery));

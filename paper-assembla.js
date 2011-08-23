@@ -220,4 +220,9 @@
             + type + '" media="' + media + '" href="' + href + '" />');
     });
 
+    /* Show the result even if there were no subtasks */
+    if (related.length === 0) {
+        showPrintPreview();
+    }
+
 }(jQuery));
