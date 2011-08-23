@@ -206,4 +206,15 @@
     /* The popup window cannot be opened in an AJAX callback */
     popup = window.open();
 
+    /* Copy the actual CSS to the new window */
+    $('head').find('link[rel="stylesheet"]').each(function (idx, e) {
+        var href, type, media;
+
+        href = $(e).attr('href');
+        type = $(e).attr('type');
+        media = $(e).attr('media');
+        $(popup.document.head).append('<link rel="stylesheet" type="'
+            + type + '" media="' + media + '" href="' + href + '" />');
+    });
+
 }(jQuery));
