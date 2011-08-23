@@ -1,6 +1,16 @@
 Paper Assembla
 ==============
 
+About
+-----
+Paper Assembla is a bookmarklet that can be used to print out user stories from within Assembla (https://www.assembla.com).
+
+Inspired by Paper-Jira (https://github.com/caillou/paper-jira).
+
+(c) Liip AG 2011
+
+This source file is subject to the MIT license that is bundled with this source code in the file LICENSE.
+
 Install
 -------
 Create a bookmark and set "javascript:" + this code as target or use the minified version.
@@ -35,13 +45,3 @@ Minify your own version
 If you modify the scripts you may want to generate a minified version of the code.
 
 To do that we used http://jscompress.com/
-
-About
------
-Paper Assembla is a bookmarklet that can be used to print out user stories from within Assembla (https://www.assembla.com).
-
-Inspired by Paper-Jira (https://github.com/caillou/paper-jira).
-
-(c) Liip AG 2011
-
-This source file is subject to the MIT license that is bundled with this source code in the file LICENSE.
