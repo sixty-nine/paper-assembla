@@ -45,8 +45,8 @@
     assemblaUrl = assemblaUrl.substr(0, assemblaUrl.lastIndexOf('/') + 1);
 
     /* Check we are on the assembla.com web site */
-    if (assemblaUrl.indexOf('www.assembla.com') === -1) {
-        alert('This bookmarklet only works on the www.assembla.com website !');
+    if (assemblaUrl.indexOf('assembla.com') === -1) {
+        alert('This bookmarklet only works on the assembla.com website !');
         return;
     }
 
